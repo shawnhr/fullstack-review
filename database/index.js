@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/fetcher");
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
@@ -12,20 +12,19 @@ let repoSchema = mongoose.Schema({
   forks_count: Number
 });
 
-let Repo = mongoose.model('Repo', repoSchema);
+let Repo = mongoose.model("Repo", repoSchema);
 
-let save = (/* TODO */repo, callback) => {
+let save = (/* TODO */ repo, callback) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
   repo.save((err, repo) => {
     if (err) {
-      callback(err, null)
+      callback(err, null);
     } else {
-      callback(null, repo)
+      callback(null, repo);
     }
-  })
-  
-}
+  });
+};
 
 module.exports.save = save;
