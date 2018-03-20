@@ -1,4 +1,4 @@
-const request = require('request');
+const requestAsync = require('request-promise');
 const config = require('../config.js');
 
 let getReposByUsername = (/* TODO */username) => {
@@ -22,13 +22,10 @@ let getReposByUsername = (/* TODO */username) => {
     }
   };
   
-  request(options, (err, res, body) {
-    let json = JSON.parse(body);
-    console.log(json);
-    return json;
+  return requestAsync(options);
+  
   })
 
 }
 
-getElementsByTagName('shawnhr');
 module.exports.getReposByUsername = getReposByUsername;
