@@ -1,7 +1,7 @@
-const requestAsync = require('request-promise');
+const request = require('request');
 const config = require('../config.js');
 
-let getReposByUsername = (/* TODO */username) => {
+let getReposByUsername = (/* TODO */username, callback) => {
   // TODO - Use the request module to request repos for a specific
   // user from the github API
 
@@ -13,19 +13,25 @@ let getReposByUsername = (/* TODO */username) => {
   //method: The HTTP method to be used (GET, POST, DELETE, etc)
   //headers: An object of HTTP headers (key-value) to be set in the request
   //form: An object containing key-value form data
-  
+  //console.log('helper .. username:', username)
   let options = {
-    url: `https://api.github.com/users/{username}/repos`,
+    url: `https://api.github.com/users/${username}/repos`,
     headers: {
       'User-Agent': 'request',
       'Authorization': `token ${config.TOKEN}`
     }
   };
   
-  return requestAsync(options);
-  
-  })
+  request(options, (err, response, body) => {
+    if (!err & response.statusCode === 200) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, JSON.parse(body));
+      }
+    }
+  });  
+  }
 
-}
 
 module.exports.getReposByUsername = getReposByUsername;
