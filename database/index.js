@@ -35,4 +35,19 @@ let save = (/* TODO */ repo) => {
   
 }
 
+let getRepos = (cb) => {
+   Repo
+   .find({})
+   .limit(25)
+   .sort({forks_count: -1})
+   .exec((err, repos) => {
+     if (err) {
+      cb(err, null)
+     }else{
+      cb(null, repos)
+     }
+   });
+}
+
 module.exports.save = save;
+module.exports.getRepos = getRepos;
