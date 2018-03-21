@@ -19,37 +19,32 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model("Repo", repoSchema);
 
-  
-
-
 let save = (/* TODO */ repo, cb) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
-  
-  repo.save((err, repo)=>{
-    if(err){
-      cb(err, null)
-    }else{
-      cb(null, repo)
-    }
-  })
-}
-  
 
-let find = (cb) => {
-   Repo
-   .find()
-   .limit(25)
-   .sort({forks_count: -1})
-   .exec((err, repos) => {
-     if (err) {
-      cb(err, null)
-     }else{
-      cb(null, repos)
-     }
-   });
-}
+  repo.save((err, repo) => {
+    if (err) {
+      cb(err, null);
+    } else {
+      cb(null, repo);
+    }
+  });
+};
+
+let find = cb => {
+  Repo.find()
+    .limit(25)
+    .sort({ forks_count: -1 })
+    .exec((err, repos) => {
+      if (err) {
+        cb(err, null);
+      } else {
+        cb(null, repos);
+      }
+    });
+};
 
 module.exports.Repo = Repo;
 module.exports.save = save;
