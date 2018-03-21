@@ -2,7 +2,7 @@ const express = require('express');
 const helpers = require('../helpers/github');
 const db = require('../database/index');
 const bodyParser = require('body-parser');
-
+//require('dotenv').config();
 let app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -57,8 +57,8 @@ app.get('/repos', function (req, res) {
 });
 
 
-let port = 1128;
-
+//let port = 1128;
+const port = proecess.env.PORT || 1128
 app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
