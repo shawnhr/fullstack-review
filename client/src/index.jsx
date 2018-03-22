@@ -17,7 +17,7 @@ class App extends React.Component {
     $.ajax({
       url: '/repos',
       type: 'GET',
-      success: (repos;) => { 
+      success: (repos) => { 
         console.log('get request success: ', repos),
         this.setState({repos: repos})
       },
